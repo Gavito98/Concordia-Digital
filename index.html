@@ -50,13 +50,13 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 2rem 4rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
             backdrop-filter: blur(10px);
-            background: rgba(10, 10, 10, 0.7);
+            background: rgba(10, 10, 10, 0.9);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             animation: slideDown 0.8s ease-out;
         }
@@ -74,7 +74,7 @@
 
         .logo {
             font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 800;
             letter-spacing: -0.02em;
             display: flex;
@@ -83,13 +83,14 @@
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 35px;
+            height: 35px;
             background: var(--white);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
+            font-size: 1rem;
             color: var(--black);
             clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
             animation: rotate 20s linear infinite;
@@ -100,15 +101,43 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         nav {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         nav a {
             color: var(--white);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -138,7 +167,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 0 4rem;
+            padding: 6rem 2rem 4rem;
             overflow: hidden;
         }
 
@@ -165,6 +194,7 @@
             z-index: 2;
             max-width: 1200px;
             animation: fadeInUp 1s ease-out 0.3s backwards;
+            text-align: center;
         }
 
         @keyframes fadeInUp {
@@ -180,9 +210,9 @@
 
         .hero h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(2rem, 10vw, 7rem);
             font-weight: 800;
-            line-height: 0.95;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
         }
@@ -194,9 +224,9 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(0.9rem, 3vw, 1.3rem);
             max-width: 600px;
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem;
             color: var(--gray-light);
             line-height: 1.8;
             animation: fadeInUp 1s ease-out 0.5s backwards;
@@ -204,14 +234,14 @@
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2.5rem;
             background: var(--white);
             color: var(--black);
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             border: 2px solid var(--white);
             position: relative;
             overflow: hidden;
@@ -241,7 +271,7 @@
 
         /* Services Section */
         .services {
-            padding: 8rem 4rem;
+            padding: 5rem 2rem;
             background: var(--white);
             color: var(--black);
             position: relative;
@@ -249,36 +279,32 @@
 
         .section-title {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
         }
 
         .section-subtitle {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
             color: var(--gray-mid);
             margin-bottom: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .service-card {
-            background: var(--black);
-            color: var(--white);
-            padding: 3rem;
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--black);
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-            border: 1px solid var(--black);
-            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .service-card::before {
@@ -287,68 +313,73 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: var(--white);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gray-mid);
+            height: 100%;
+            background: var(--black);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.3s ease;
+            z-index: 0;
         }
 
         .service-card:hover::before {
-            transform: scaleX(1);
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .service-card:hover {
+            color: var(--white);
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .service-number {
             font-family: 'Syne', sans-serif;
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 800;
             opacity: 0.1;
-            line-height: 1;
             margin-bottom: 1rem;
         }
 
         .service-card h3 {
             font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            letter-spacing: -0.01em;
         }
 
         .service-card p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--gray-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
         }
 
         /* About Section */
         .about {
-            padding: 8rem 4rem;
-            background: var(--gray-dark);
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            padding: 5rem 2rem;
+            background: var(--gray-dark);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .about-content h2 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 800;
             margin-bottom: 2rem;
             letter-spacing: -0.02em;
         }
 
         .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.8;
             color: var(--gray-light);
+            margin-bottom: 1.5rem;
         }
 
         .about-features {
@@ -360,54 +391,45 @@
         .feature {
             display: flex;
             gap: 1.5rem;
-            align-items: start;
+            align-items: flex-start;
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--white);
-            color: var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%);
+            font-size: 2.5rem;
+            min-width: 60px;
+            text-align: center;
         }
 
         .feature-text h4 {
             font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         .feature-text p {
-            font-size: 0.95rem;
-            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-light);
+            line-height: 1.6;
         }
 
         /* Contact Section */
         .contact {
-            padding: 8rem 4rem;
+            padding: 5rem 2rem;
+            text-align: center;
             background: var(--white);
             color: var(--black);
-            text-align: center;
         }
 
         .contact h2 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
 
         .contact p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 3rem;
             color: var(--gray-mid);
         }
@@ -415,17 +437,18 @@
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 4rem;
+            gap: 3rem;
             margin-top: 4rem;
             flex-wrap: wrap;
         }
 
         .contact-item {
-            text-align: left;
+            text-align: center;
+            min-width: 200px;
         }
 
         .contact-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--gray-mid);
@@ -434,13 +457,13 @@
 
         .contact-value {
             font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-weight: 700;
         }
 
         /* Footer */
         footer {
-            padding: 3rem 4rem;
+            padding: 2rem;
             background: var(--black);
             color: var(--gray-light);
             text-align: center;
@@ -448,51 +471,9 @@
         }
 
         footer p {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             letter-spacing: 0.05em;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            header {
-                padding: 1.5rem 2rem;
-            }
-
-            nav {
-                gap: 1.5rem;
-            }
-
-            .hero {
-                padding: 0 2rem;
-            }
-
-            .services {
-                padding: 4rem 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-                padding: 4rem 2rem;
-                gap: 3rem;
-            }
-
-            .contact {
-                padding: 4rem 2rem;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 2rem;
-                align-items: center;
-            }
-
-            footer {
-                padding: 2rem;
-            }
+            line-height: 1.6;
         }
 
         /* Scroll indicator */
@@ -530,6 +511,161 @@
             50% { transform: translateX(-50%) translateY(30px); }
             100% { transform: translateX(-50%) translateY(60px); opacity: 0; }
         }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                transition: left 0.3s ease;
+                padding: 2rem;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav a {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                line-height: 1.1;
+            }
+
+            .hero h1 .outline {
+                -webkit-text-stroke: 1px var(--white);
+                text-stroke: 1px var(--white);
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .services {
+                padding: 4rem 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .about {
+                padding: 4rem 1.5rem;
+                gap: 3rem;
+            }
+
+            .feature {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .contact {
+                padding: 4rem 1.5rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .services {
+                padding: 3rem 1rem;
+            }
+
+            .about {
+                padding: 3rem 1rem;
+            }
+
+            .contact {
+                padding: 3rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            header {
+                padding: 1.5rem 3rem;
+            }
+
+            .hero {
+                padding: 6rem 3rem 4rem;
+            }
+
+            .services {
+                padding: 5rem 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                padding: 5rem 3rem;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact {
+                padding: 5rem 3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -538,10 +674,15 @@
             <div class="logo-icon">C</div>
             Concordia Digital
         </div>
-        <nav>
-            <a href="#servicios">Servicios</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
+            <a href="#servicios" onclick="closeMenu()">Servicios</a>
+            <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+            <a href="#contacto" onclick="closeMenu()">Contacto</a>
         </nav>
     </header>
 
@@ -660,5 +801,32 @@
     <footer>
         <p>© 2026 Concordia Digital. Todos los derechos reservados. | Servicios Digitales y Tecnológicos en Concordia, Sinaloa.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            nav.classList.remove('active');
+            toggle.classList.remove('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            const header = document.querySelector('header');
+            
+            if (!header.contains(event.target) && nav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
