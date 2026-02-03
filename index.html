@@ -1,680 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
     <link rel="icon" type="image/png" href="Concordia.png"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concordia Digital Center - Servicios Digitales y Tecnológicos en Concordia, Sinaloa.</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #0a0a0a;
-            --white: #fafafa;
-            --gray-dark: #1a1a1a;
-            --gray-mid: #404040;
-            --gray-light: #d4d4d4;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Noise texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 1000;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 10, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
-            color: var(--black);
-            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 101;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--white);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 6rem 2rem 4rem;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 49%, rgba(255,255,255,0.03) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 49%, rgba(255,255,255,0.03) 51%, transparent 52%);
-            background-size: 60px 60px;
-            animation: bgMove 20s linear infinite;
-        }
-
-        @keyframes bgMove {
-            from { background-position: 0 0; }
-            to { background-position: 60px 60px; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-            text-align: center;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 10vw, 7rem);
-            font-weight: 800;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-        }
-
-        .hero h1 .outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--white);
-            text-stroke: 2px var(--white);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.9rem, 3vw, 1.3rem);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            color: var(--gray-light);
-            line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--white);
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-size: 0.75rem;
-            border: 2px solid var(--white);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            animation: fadeInUp 1s ease-out 0.7s backwards;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--black);
-            transition: left 0.4s ease;
-            z-index: -1;
-        }
-
-        .cta-button:hover {
-            color: var(--white);
-        }
-
-        .cta-button:hover::before {
-            left: 0;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 2rem;
-            background: var(--white);
-            color: var(--black);
-            position: relative;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-subtitle {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            color: var(--gray-mid);
-            margin-bottom: 4rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem 2rem;
-            border: 2px solid var(--black);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--black);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.3s ease;
-            z-index: 0;
-        }
-
-        .service-card:hover::before {
-            transform: scaleY(1);
-            transform-origin: top;
-        }
-
-        .service-card:hover {
-            color: var(--white);
-        }
-
-        .service-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            opacity: 0.1;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.8;
-        }
-
-        /* About Section */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            padding: 5rem 2rem;
-            background: var(--gray-dark);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .about-content h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 2rem;
-            letter-spacing: -0.02em;
-        }
-
-        .about-content p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            line-height: 1.8;
-            color: var(--gray-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-features {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .feature {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .feature-text h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-text p {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .contact h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            margin-bottom: 3rem;
-            color: var(--gray-mid);
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            text-align: center;
-            min-width: 200px;
-        }
-
-        .contact-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--gray-mid);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-value {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            font-weight: 700;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem;
-            background: var(--black);
-            color: var(--gray-light);
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        footer p {
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            line-height: 1.6;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.3);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--white);
-            border-radius: 50%;
-            animation: scrollDot 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes scrollDot {
-            0% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(30px); }
-            100% { transform: translateX(-50%) translateY(60px); opacity: 0; }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem 1.5rem;
-            }
-
-            .logo {
-                font-size: 1rem;
-            }
-
-            .logo-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--black);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 3rem;
-                transition: left 0.3s ease;
-                padding: 2rem;
-                border-right: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            nav.active {
-                left: 0;
-            }
-
-            nav a {
-                font-size: 1.2rem;
-            }
-
-            .hero {
-                padding: 5rem 1.5rem 3rem;
-            }
-
-            .hero h1 {
-                line-height: 1.1;
-            }
-
-            .hero h1 .outline {
-                -webkit-text-stroke: 1px var(--white);
-                text-stroke: 1px var(--white);
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .services {
-                padding: 4rem 1.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .service-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .about {
-                padding: 4rem 1.5rem;
-                gap: 3rem;
-            }
-
-            .feature {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .contact {
-                padding: 4rem 1.5rem;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .scroll-indicator {
-                display: none;
-            }
-
-            .cta-button {
-                padding: 0.9rem 2rem;
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Extra small devices */
-        @media (max-width: 480px) {
-            .hero {
-                padding: 4rem 1rem 2rem;
-            }
-
-            .services {
-                padding: 3rem 1rem;
-            }
-
-            .about {
-                padding: 3rem 1rem;
-            }
-
-            .contact {
-                padding: 3rem 1rem;
-            }
-
-            footer p {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Tablet */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            header {
-                padding: 1.5rem 3rem;
-            }
-
-            .hero {
-                padding: 6rem 3rem 4rem;
-            }
-
-            .services {
-                padding: 5rem 3rem;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about {
-                padding: 5rem 3rem;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .contact {
-                padding: 5rem 3rem;
-            }
-        }
-    </style>
+    
+    <!-- AOS Library para animaciones -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Botón flotante de WhatsApp MEJORADO con mensaje predefinido -->
+    <a href="https://wa.me/526691234567?text=Hola%2C%20necesito%20información%20sobre%20sus%20servicios%20técnicos" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       title="Contactar por WhatsApp"
+       aria-label="Contactar por WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.163 0 0 7.163 0 16C0 18.8367 0.746667 21.4933 2.05333 23.8L0.106667 30.9333C-0.0266667 31.4533 0.546667 31.8933 1.06667 31.76L8.2 29.8133C10.5067 31.12 13.1633 31.8667 16 31.8667C24.837 31.8667 32 24.7037 32 15.8667C32 7.02967 24.837 0 16 0ZM23.5467 22.1067C23.1733 23.1467 21.5467 24.0267 20.6133 24.16C19.9733 24.2533 19.1467 24.32 16.32 23.2267C12.64 21.7867 10.2933 18.08 10.1067 17.84C9.92 17.6 8.53333 15.7867 8.53333 13.9067C8.53333 12.0267 9.49333 11.1067 9.86667 10.72C10.24 10.3333 10.6667 10.24 10.9067 10.24C11.1467 10.24 11.3867 10.24 11.6 10.2533C11.8267 10.2667 12.1333 10.16 12.4267 10.88C12.72 11.6 13.4667 13.48 13.5467 13.64C13.6267 13.8 13.7067 14.0133 13.5733 14.2533C13.44 14.4933 13.36 14.6267 13.1733 14.8267C12.9867 15.0267 12.8133 15.1733 12.6267 15.3867C12.4533 15.5733 12.2667 15.7733 12.48 16.1467C12.6933 16.52 13.4533 17.7467 14.56 18.72C15.9867 19.9733 17.1733 20.3333 17.5467 20.4933C17.92 20.6533 18.1733 20.6133 18.3867 20.3867C18.6 20.16 19.32 19.3333 19.56 18.96C19.8 18.5867 20.04 18.6533 20.3867 18.7733C20.7333 18.8933 22.6133 19.8267 22.9867 20.0133C23.36 20.2 23.6 20.2933 23.68 20.4533C23.76 20.6133 23.76 21.3333 23.5467 22.1067Z" fill="white"/>
+        </svg>
+    </a>
+
+    <!-- Botón Volver Arriba -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Volver arriba" title="Volver arriba">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
     <header>
         <div class="logo">
             <div class="logo-icon">C</div>
             Concordia Digital
         </div>
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Menú de navegación">
             <span></span>
             <span></span>
             <span></span>
@@ -682,6 +45,8 @@
         <nav id="mainNav">
             <a href="#servicios" onclick="closeMenu()">Servicios</a>
             <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+            <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
+            <a href="#faq" onclick="closeMenu()">FAQ</a>
             <a href="#contacto" onclick="closeMenu()">Contacto</a>
         </nav>
     </header>
@@ -689,100 +54,272 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>
+            <h1 data-aos="fade-up">
                 SERVICIOS<br>
                 <span class="outline">TECNOLÓGICOS</span><br>
                 A DOMICILIO
             </h1>
-            <p class="hero-subtitle">
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
                 Técnico de confianza en Concordia, Sinaloa, México. Ofrezco servicios tecnológicos a domicilio, 
                 pensados para ayudarte sin que tengas que salir de casa ni "batallar" con la tecnología.
             </p>
-            <a href="#contacto" class="cta-button">Solicitar Servicio</a>
+            <a href="#contacto" class="cta-button" data-aos="fade-up" data-aos-delay="400">Solicitar Servicio</a>
         </div>
         <div class="scroll-indicator"></div>
     </section>
 
     <section class="services" id="servicios">
-        <h2 class="section-title">Servicios</h2>
-        <p class="section-subtitle">Lo que puedo hacer por ti</p>
+        <h2 class="section-title" data-aos="fade-up">Servicios</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Lo que puedo hacer por ti</p>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-number">01</div>
                 <h3>Reparación de PC</h3>
                 <p>Diagnóstico y reparación de problemas de hardware y software. Desde pantallas dañadas hasta sistemas lentos.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="service-number">02</div>
                 <h3>Mantenimiento Preventivo</h3>
                 <p>Limpieza física y optimización de sistemas para mantener tus equipos funcionando como nuevos.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="service-number">03</div>
                 <h3>Instalación de Software</h3>
                 <p>Instalación y configuración de programas, sistemas operativos y aplicaciones especializadas.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-number">04</div>
                 <h3>Soporte Técnico</h3>
                 <p>Asesoría y solución de problemas tecnológicos. Te ayudo a entender y usar mejor tu equipo.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="service-number">05</div>
                 <h3>Recuperación de Datos</h3>
                 <p>Rescate de información importante de discos dañados o sistemas que no arrancan.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="service-number">06</div>
                 <h3>Configuración de Redes</h3>
                 <p>Instalación y optimización de redes WiFi, cableadas y solución de problemas de conectividad.</p>
             </div>
+            <div class="service-card coming-soon" data-aos="fade-up" data-aos-delay="400">
+                <div class="coming-soon-text">Próximamente</div>
+            </div>
+            <div class="service-card coming-soon" data-aos="fade-up" data-aos-delay="500">
+                <div class="coming-soon-text">Próximamente</div>
+            </div>
         </div>
     </section>
 
-    <section class="about" id="nosotros">
-        <div class="about-content">
-            <h2>Servicio de confianza en Concordia</h2>
-            <p>
-                Soy un técnico de confianza especializado en servicios tecnológicos a domicilio. 
-                Mi objetivo es hacer la tecnología accesible para todos, ofreciendo soluciones 
-                profesionales sin que tengas que salir de casa.
+    <section class="tech-dna" id="nosotros">
+        <div class="tech-dna-container">
+            <h2 data-aos="fade-up">Tecnología que te entiende</h2>
+            <p class="tech-dna-subtitle" data-aos="fade-up" data-aos-delay="100">
+                No solo arreglo computadoras, creo soluciones tecnológicas que se adaptan a tu vida. 
+                Mi enfoque es hacer que la tecnología trabaje para ti, no al revés.
             </p>
-            <p>
-                Con experiencia en reparación, mantenimiento y soporte técnico, me enfoco en 
-                brindarte un servicio personalizado que resuelva tus problemas de forma eficiente.
-            </p>
-        </div>
-        <div class="about-features">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-text">
-                    <h4>Servicio Rápido</h4>
-                    <p>Respuesta ágil y soluciones eficientes para que vuelvas a trabajar lo antes posible.</p>
+            <div class="dna-stats">
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Satisfacción</div>
+                    <p class="stat-description">Cada cliente es único, cada solución es personalizada para sus necesidades específicas.</p>
                 </div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🏠</div>
-                <div class="feature-text">
-                    <h4>A Domicilio</h4>
-                    <p>Voy hasta tu ubicación para brindarte el servicio sin que tengas que moverte.</p>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidad</div>
+                    <p class="stat-description">Tu tecnología no descansa, yo tampoco. Apoyo cuando lo necesites.</p>
                 </div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✓</div>
-                <div class="feature-text">
-                    <h4>Confiable</h4>
-                    <p>Trabajo profesional con garantía. Tu confianza es mi prioridad.</p>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Innovación</div>
+                    <p class="stat-description">Siempre actualizado con las últimas tecnologías y mejores prácticas del sector.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- TESTIMONIOS (NUEVO) -->
+    <section class="testimonials-section" id="testimonios">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Lo Que Dicen Nuestros Clientes</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Experiencias reales de personas satisfechas</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-right" data-aos-delay="200">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Excelente servicio. Mi laptop estaba muy lenta y ahora funciona como nueva. Muy profesional y honesto con los precios. Lo recomiendo ampliamente."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <span>Maestra - Concordia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Recuperó todos mis archivos de una USB que pensé perdida. Súper agradecido por el servicio y la atención. Muy paciente explicando todo."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>Jorge Ramírez</h4>
+                            <span>Contador - Concordia</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-left" data-aos-delay="400">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Instaló toda la red WiFi en mi negocio. Quedó perfecto y ahora tengo señal en todos lados. Lo recomiendo 100%. Muy puntual y profesional."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Ana Sánchez</h4>
+                            <span>Dueña de Café - Concordia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-cta" data-aos="fade-up" data-aos-delay="500">
+                <p>¿Ya trabajaste con nosotros? <a href="#contacto">Déjanos tu opinión</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (NUEVO) - Con sistema expandible -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Preguntas Frecuentes</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Resolvemos tus dudas más comunes</p>
+            
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Cobran por el diagnóstico?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, el diagnóstico tiene un costo de $100 MXN, pero si decides contratar el servicio, este monto se descuenta del precio total. Es una inversión que te garantiza un presupuesto preciso y sin sorpresas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Dan garantía por los servicios?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutamente. Todos nuestros servicios incluyen garantía por escrito. El mantenimiento tiene 30 días de garantía, y las reparaciones varían según el tipo de trabajo (normalmente 30-90 días). Las refacciones tienen garantía del fabricante.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Cuánto tiempo tarda una reparación?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Depende del tipo de servicio. Un mantenimiento preventivo toma 2-4 horas. Las reparaciones simples pueden estar listas el mismo día, mientras que reparaciones complejas o que requieran refacciones pueden tomar de 1 a 5 días. Siempre te informo del tiempo estimado después del diagnóstico.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Trabajan en fines de semana?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, trabajamos de lunes a sábado de 9:00 AM a 6:00 PM. Para emergencias o casos urgentes, podemos coordinar horarios especiales incluso los domingos. Contáctame y encontramos la mejor opción para ti.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Mis datos están seguros?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Totalmente. Manejo toda la información con absoluta confidencialidad y profesionalismo. No accedo a archivos personales sin autorización expresa y todos los datos se manejan con políticas estrictas de privacidad. Tu confianza es lo más importante para nosotros.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="450">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Cubren otras localidades además de Concordia?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, doy servicio en Concordia y comunidades cercanas como Copala, Pánuco y zonas aledañas. Para servicios fuera de Concordia centro, hay un cargo adicional por traslado que se informa al momento de cotizar. ¡Pregunta por tu localidad!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto con Validación -->
     <section class="contact" id="contacto">
-        <h2>¿Necesitas ayuda?</h2>
-        <p>Contáctame y agenda tu servicio.😉 </p>
-        <a href="#" class="cta-button">Enviar Mensaje</a>
-        <div class="contact-info">
+        <h2 data-aos="fade-up">¿Necesitas ayuda?</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Contáctame y agenda tu servicio 😉</p>
+        
+        <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <form id="contactForm" class="contact-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="669-123-4567">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Servicio de Interés</label>
+                    <select id="service" name="service">
+                        <option value="">Selecciona un servicio...</option>
+                        <option value="reparacion">Reparación de PC</option>
+                        <option value="mantenimiento">Mantenimiento Preventivo</option>
+                        <option value="software">Instalación de Software</option>
+                        <option value="soporte">Soporte Técnico</option>
+                        <option value="recuperacion">Recuperación de Datos</option>
+                        <option value="redes">Configuración de Redes</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensaje *</label>
+                    <textarea id="message" name="message" required rows="5" placeholder="Cuéntame qué necesitas..."></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button">Enviar Mensaje</button>
+            </form>
+            
+            <div id="formMessage" class="form-message"></div>
+        </div>
+        
+        <div class="contact-info" data-aos="fade-up" data-aos-delay="300">
             <div class="contact-item">
                 <div class="contact-label">Ubicación.</div>
                 <div class="contact-value">Concordia, Sinaloa.</div>
@@ -802,31 +339,8 @@
         <p>© 2026 Concordia Digital. Todos los derechos reservados. | Servicios Digitales y Tecnológicos en Concordia, Sinaloa.</p>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.menu-toggle');
-            nav.classList.toggle('active');
-            toggle.classList.toggle('active');
-        }
-
-        function closeMenu() {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.menu-toggle');
-            nav.classList.remove('active');
-            toggle.classList.remove('active');
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.getElementById('mainNav');
-            const toggle = document.querySelector('.menu-toggle');
-            const header = document.querySelector('header');
-            
-            if (!header.contains(event.target) && nav.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
