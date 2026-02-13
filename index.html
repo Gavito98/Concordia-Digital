@@ -1,50 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/png" href="Concordia.png"/>
+    <!-- Meta Tags Básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concordia Digital - Servicios Digitales y Tecnológicos en Concordia, Sinaloa.</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Concordia Digital - Servicios Digitales y Tecnológicos en Concordia, Sinaloa</title>
+    <meta name="description" content="Servicios técnicos y digitales profesionales en Concordia, Sinaloa. Reparación de computadoras, mantenimiento preventivo, soporte técnico a domicilio. Tu técnico de confianza.">
+    <meta name="keywords" content="reparación computadoras concordia, técnico informático sinaloa, soporte técnico, mantenimiento PC, recuperación datos, configuración redes">
+    <meta name="author" content="Concordia Digital">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tudominio.com/">
+    <meta property="og:title" content="Concordia Digital - Servicios Tecnológicos en Concordia, Sinaloa">
+    <meta property="og:description" content="Tu técnico de confianza en Concordia. Reparación, mantenimiento y soporte técnico a domicilio.">
+    <meta property="og:image" content="https://tudominio.com/sinaloa.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tudominio.com/">
+    <meta property="twitter:title" content="Concordia Digital - Servicios Tecnológicos">
+    <meta property="twitter:description" content="Tu técnico de confianza en Concordia, Sinaloa">
+    <meta property="twitter:image" content="https://tudominio.com/sinaloa.png">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="sinaloa.png"/>
     <link rel="shortcut icon" href="sinaloa.png" type="image/x-icon">
-
+    <link rel="apple-touch-icon" href="sinaloa.png">
+    
+    <!-- Preconnect para mejor rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- AOS Library para animaciones -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Estilos principales -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Theme Color para navegadores móviles -->
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- Manifest para PWA (opcional) -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
 </head>
 <body>
-    <!-- Botón flotante de WhatsApp MEJORADO con mensaje predefinido -->
-    <a href="https://wa.me/526691517346?text=Hola%2C%20necesito%20másinformación%20sobre%20sus%20servicios%20técnicos." 
+    <!-- Loading Screen -->
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-content">
+            <div class="logo-icon loading-logo">C</div>
+            <p>Cargando...</p>
+        </div>
+    </div>
+
+    <!-- Skip to main content (Accesibilidad) -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Botón flotante de WhatsApp MEJORADO -->
+    <a href="https://wa.me/526691517346?text=Hola%2C%20necesito%20más%20información%20sobre%20sus%20servicios%20técnicos." 
        class="whatsapp-float" 
        target="_blank" 
        rel="noopener noreferrer"
        title="Contactar por WhatsApp"
        aria-label="Contactar por WhatsApp">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M16 0C7.163 0 0 7.163 0 16C0 18.8367 0.746667 21.4933 2.05333 23.8L0.106667 30.9333C-0.0266667 31.4533 0.546667 31.8933 1.06667 31.76L8.2 29.8133C10.5067 31.12 13.1633 31.8667 16 31.8667C24.837 31.8667 32 24.7037 32 15.8667C32 7.02967 24.837 0 16 0ZM23.5467 22.1067C23.1733 23.1467 21.5467 24.0267 20.6133 24.16C19.9733 24.2533 19.1467 24.32 16.32 23.2267C12.64 21.7867 10.2933 18.08 10.1067 17.84C9.92 17.6 8.53333 15.7867 8.53333 13.9067C8.53333 12.0267 9.49333 11.1067 9.86667 10.72C10.24 10.3333 10.6667 10.24 10.9067 10.24C11.1467 10.24 11.3867 10.24 11.6 10.2533C11.8267 10.2667 12.1333 10.16 12.4267 10.88C12.72 11.6 13.4667 13.48 13.5467 13.64C13.6267 13.8 13.7067 14.0133 13.5733 14.2533C13.44 14.4933 13.36 14.6267 13.1733 14.8267C12.9867 15.0267 12.8133 15.1733 12.6267 15.3867C12.4533 15.5733 12.2667 15.7733 12.48 16.1467C12.6933 16.52 13.4533 17.7467 14.56 18.72C15.9867 19.9733 17.1733 20.3333 17.5467 20.4933C17.92 20.6533 18.1733 20.6133 18.3867 20.3867C18.6 20.16 19.32 19.3333 19.56 18.96C19.8 18.5867 20.04 18.6533 20.3867 18.7733C20.7333 18.8933 22.6133 19.8267 22.9867 20.0133C23.36 20.2 23.6 20.2933 23.68 20.4533C23.76 20.6133 23.76 21.3333 23.5467 22.1067Z" fill="white"/>
         </svg>
     </a>
 
     <!-- Botón Volver Arriba -->
     <button id="scrollToTop" class="scroll-to-top" aria-label="Volver arriba" title="Volver arriba">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </button>
 
-    <header>
+    <!-- Header -->
+    <header role="banner">
         <div class="logo">
-            <div class="logo-icon">C</div>
-            Concordia Digital
+            <div class="logo-icon" aria-hidden="true">C</div>
+            <span>Concordia Digital</span>
         </div>
-        <div class="menu-toggle" onclick="toggleMenu()" aria-label="Menú de navegación">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
-        </div>
-        <nav id="mainNav">
+        </button>
+        <nav id="mainNav" role="navigation" aria-label="Navegación principal">
             <a href="#servicios" onclick="closeMenu()">Servicios</a>
             <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
             <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
@@ -53,178 +103,211 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1 data-aos="fade-up">
-                Soluciones<br>
-                <span class="outline">Informáticas</span><br>
-                
-            </h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                👋🏻 Hola, soy tu técnico de confianza en Concordia, Sinaloa. Ofrezco servicios basicos tecnológicos a domicilio, 
-                pensados para ayudarte sin que tengas que salir de casa ni "batallar" con la tecnología.
-            </p>
-            <a href="#contacto" class="cta-button" data-aos="fade-up" data-aos-delay="400">Solicitar Servicio</a>
-        </div>
-        <div class="scroll-indicator"></div>
-    </section>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" role="banner">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1 data-aos="fade-up">
+                    Bienvenido <br>
+                    <span class="outline">A mi web.</span>
+                </h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    👋🏻 Hola, soy tu técnico de confianza en Concordia, Sinaloa, México. Ofrezco servicios básicos tecnológicos a domicilio, 
+                    pensados para ayudarte sin que tengas que salir de casa ni "batallar" con la tecnología.
+                </p>
+                <a href="#contacto" class="cta-button" data-aos="fade-up" data-aos-delay="400">Solicitar Servicio</a>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true"></div>
+        </section>
 
-    <section class="services" id="servicios">
-        <h2 class="section-title" data-aos="fade-up">Servicios</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Esto es lo que puedo hacer por ti</p>
-        <div class="services-grid">
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-number">01</div>
-                <h3>Reparación de equipos informáticos.</h3>
-                <p>Diagnóstico y reparo problemas de hardware y software. Desde pantallas dañadas hasta sistemas lentos.</p>
+        <!-- Services Section -->
+        <section class="services" id="servicios">
+            <h2 class="section-title" data-aos="fade-up">Servicios</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Esto es lo que puedo hacer por ti</p>
+            <div class="services-grid">
+                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-number" aria-hidden="true">01</div>
+                    <h3>Reparación de equipos informáticos</h3>
+                    <p>Diagnóstico y reparo problemas de hardware y software. Desde pantallas dañadas hasta sistemas lentos.</p>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-number" aria-hidden="true">02</div>
+                    <h3>Mantenimiento Preventivo</h3>
+                    <p>Limpieza física y optimización de sistemas para mantener tus equipos funcionando como nuevos.</p>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-number" aria-hidden="true">03</div>
+                    <h3>Instalación de Software y Hardware</h3>
+                    <p>Ofrezco servicios de instalación y configuración de programas, sistemas operativos y aplicaciones según tus necesidades, así como la implementación y puesta en marcha de equipos físicos.</p>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-number" aria-hidden="true">04</div>
+                    <h3>Soporte Técnico</h3>
+                    <p>Asesoría y solución de problemas tecnológicos. Te ayudo a entender y usar mejor tu equipo.</p>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-number" aria-hidden="true">05</div>
+                    <h3>Recuperación de Datos</h3>
+                    <p>Rescate de información importante de discos dañados o sistemas que no arrancan.</p>
+                </article>
+                <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-number" aria-hidden="true">06</div>
+                    <h3>Configuración de Redes</h3>
+                    <p>Instalación y optimización de redes WiFi, cableadas y solución de problemas de conectividad.</p>
+                </article>
+                <article class="service-card coming-soon" data-aos="fade-up" data-aos-delay="400">
+                    <div class="coming-soon-text">Próximamente</div>
+                </article>
+                <article class="service-card coming-soon" data-aos="fade-up" data-aos-delay="500">
+                    <div class="coming-soon-text">Próximamente</div>
+                </article>
             </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-number">02</div>
-                <h3>Mantenimiento Preventivo.</h3>
-                <p>Limpieza física y optimización de sistemas para mantener tus equipos funcionando como nuevos.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-number">03</div>
-                <h3>Instalación de Software y Hardware.</h3>
-                <p>Ofrezco servicios de instalación y configuración de programas, sistemas operativos y aplicaciones según tus necesidades, así como la implementación y puesta en marcha de equipos físicos.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-number">04</div>
-                <h3>Soporte Técnico.</h3>
-                <p>Asesoría y solución de problemas tecnológicos. Te ayudo a entender y usar mejor tu equipo.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-number">05</div>
-                <h3>Recuperación de Datos.</h3>
-                <p>Rescate de información importante de discos dañados o sistemas que no arrancan.</p>
-            </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-number">06</div>
-                <h3>Configuración de Redes.</h3>
-                <p>Instalación y optimización de redes WiFi, cableadas y solución de problemas de conectividad.</p>
-            </div>
-            <div class="service-card coming-soon" data-aos="fade-up" data-aos-delay="400">
-                <div class="coming-soon-text">Próximamente.</div>
-            </div>
-            <div class="service-card coming-soon" data-aos="fade-up" data-aos-delay="500">
-                <div class="coming-soon-text">Próximamente.</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="tech-dna" id="nosotros">
-        <div class="tech-dna-container">
-            <h2 data-aos="fade-up">Tecnología que te entiende</h2>
-            <p class="tech-dna-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Mi objetivo es crear soluciones tecnológicas que se adapten a tu vida, 
-                el enfoque es hacer que la tecnología trabaje para ti, no al revés.
-            </p>
-            <div class="dna-stats">
-                <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Satisfacción</div>
-                    <p class="stat-description">Cada cliente es único, cada solución es personalizada para sus necesidades específicas.</p>
-                </div>
-                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Disponibilidad</div>
-                    <p class="stat-description">Tu tecnología no descansa, yo tampoco. Apoyo cuando lo necesites.</p>
-                </div>
-                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="stat-number">🌐</div>
-                    <div class="stat-label">Innovación</div>
-                    <p class="stat-description">Siempre actualizado con las últimas tecnologías y mejores prácticas del sector.</p>
+        <!-- Tech DNA Section -->
+        <section class="tech-dna" id="nosotros">
+            <div class="tech-dna-container">
+                <h2 data-aos="fade-up">Tecnología que te entiende</h2>
+                <p class="tech-dna-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Mi objetivo es crear soluciones tecnológicas que se adapten a tu vida, 
+                    el enfoque es hacer que la tecnología trabaje para ti, no al revés.
+                </p>
+                <div class="dna-stats">
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="stat-number" aria-label="100 por ciento">100%</div>
+                        <div class="stat-label">Satisfacción</div>
+                        <p class="stat-description">Cada cliente es único, cada solución es personalizada para sus necesidades específicas.</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="stat-number" aria-label="24 horas al día, 7 días a la semana">24/7</div>
+                        <div class="stat-label">Disponibilidad</div>
+                        <p class="stat-description">Tu tecnología no descansa, yo tampoco. Apoyo cuando lo necesites.</p>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="stat-number">+100</div>
+                        <div class="stat-label">Clientes Satisfechos</div>
+                        <p class="stat-description">Experiencia comprobada sirviendo a la comunidad de Concordia y zonas aledañas.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TESTIMONIOS (NUEVO) -->
-    <section class="testimonials-section" id="testimonios">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Esto Es Lo Que Dicen Nuestros Clientes</h2>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section" id="testimonios">
+            <h2 class="section-title" data-aos="fade-up">Lo que dicen mis clientes</h2>
             <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Experiencias reales de personas satisfechas</p>
             
             <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-right" data-aos-delay="200">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Excelente servicio. Mi laptop estaba muy lenta y ahora funciona como nueva. Muy profesional y honesto con los precios. Lo recomiendo ampliamente."</p>
+                <article class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <p class="testimonial-text">
+                        "Excelente servicio. Me reparó mi laptop en menos de 24 horas y quedó como nueva. 
+                        Muy profesional y honesto con los precios."
+                    </p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
+                        <div class="author-avatar" aria-hidden="true">M</div>
                         <div class="author-info">
                             <h4>María González</h4>
-                            <span>Maestra - Concordia.</span>
+                            <span>Concordia, Sin.</span>
                         </div>
                     </div>
-                </div>
+                </article>
                 
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Recuperó todos mis archivos de una USB que pensé perdida. Súper agradecido por el servicio y la atención. Muy paciente explicando todo."</p>
+                <article class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <p class="testimonial-text">
+                        "Recuperó todos mis archivos de una USB que pensé que había perdido para siempre. 
+                        ¡Increíble trabajo! Lo recomiendo al 100%."
+                    </p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">J</div>
+                        <div class="author-avatar" aria-hidden="true">J</div>
                         <div class="author-info">
-                            <h4>Jorge Ramírez</h4>
-                            <span>Contador - Concordia.</span>
+                            <h4>José Ramírez</h4>
+                            <span>Copala, Sin.</span>
                         </div>
                     </div>
-                </div>
+                </article>
                 
-                <div class="testimonial-card" data-aos="fade-left" data-aos-delay="400">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"Instaló toda la red WiFi en mi negocio. Quedó perfecto y ahora tengo señal en todos lados. Lo recomiendo 100%. Muy puntual y profesional."</p>
+                <article class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <p class="testimonial-text">
+                        "Servicio a domicilio muy conveniente. Configuró toda mi red WiFi y ahora tengo señal 
+                        en toda la casa. Muy recomendable."
+                    </p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
+                        <div class="author-avatar" aria-hidden="true">R</div>
                         <div class="author-info">
-                            <h4>Ana Sánchez</h4>
-                            <span>Dueña de Café - Concordia.</span>
+                            <h4>Roberto Sánchez</h4>
+                            <span>Concordia, Sin.</span>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
             
-            <div class="testimonial-cta" data-aos="fade-up" data-aos-delay="500">
-                <p>¿Ya trabajaste con nosotros? <a href="#contacto">Déjanos tu opinión</a></p>
+            <div class="testimonial-cta" data-aos="fade-up" data-aos-delay="400">
+                ¿Quieres ser el siguiente? <a href="#contacto">Contáctame ahora</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ (NUEVO) - Con sistema expandible -->
-    <section class="faq-section" id="faq">
-        <div class="container">
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
             <h2 class="section-title" data-aos="fade-up">Preguntas Frecuentes</h2>
-            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Resolvemos tus dudas más comunes</p>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Resuelve tus dudas antes de contactarme
+            </p>
             
             <div class="faq-container">
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
-                        <span>¿Cobran por el diagnóstico?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <span>¿Cuánto cobran por una revisión?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Sí, el diagnóstico tiene un costo de $100 MXN, pero si decides contratar el servicio, este monto se descuenta del precio total. Es una inversión que te garantiza un presupuesto preciso y sin sorpresas.</p>
+                        <p>La revisión y diagnóstico inicial es GRATIS si contratas el servicio. Si decides no continuar, tiene un costo simbólico de $100 pesos. Una vez identificado el problema, te doy un presupuesto claro antes de cualquier reparación.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Dan servicio a domicilio?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>¡Sí! Es una de nuestras especialidades. Voy directamente a tu hogar u oficina en Concordia y zonas cercanas. Esto te ahorra tiempo y la molestia de transportar tus equipos. El servicio a domicilio no tiene costo adicional dentro de Concordia centro.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos efectivo y transferencias bancarias. El pago se realiza una vez completado el servicio y verificado que todo funciona correctamente. Tu satisfacción es primero.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
-                        <span>¿Dan garantía por los servicios?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <span>¿Ofrecen garantía en las reparaciones?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Absolutamente. Todos nuestros servicios incluyen garantía por escrito. El mantenimiento tiene 30 días de garantía, y las reparaciones varían según el tipo de trabajo (normalmente 30-90 días). Las refacciones tienen garantía del fabricante.</p>
+                        <p>Absolutamente. Todos los servicios incluyen garantía por escrito. El mantenimiento tiene 30 días de garantía, y las reparaciones varían según el tipo de trabajo (normalmente 30-90 días). Las refacciones tienen garantía del fabricante.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                         <span>¿Cuánto tiempo tarda una reparación?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -236,7 +319,7 @@
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="350">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                         <span>¿Trabajan en fines de semana?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -248,19 +331,19 @@
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                         <span>¿Mis datos están seguros?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Totalmente. Manejo toda la información con absoluta confidencialidad y profesionalismo. No accedo a archivos personales sin autorización expresa y todos los datos se manejan con políticas estrictas de privacidad. Tu confianza es lo más importante para nosotros.</p>
+                        <p>Totalmente. Manejo toda la información con absoluta confidencialidad y profesionalismo. No accedo a archivos personales sin autorización expresa y todos los datos se manejan con políticas estrictas de privacidad. Tu confianza es lo más importante.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="450">
                     <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                         <span>¿Cubren otras localidades además de Concordia?</span>
-                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -269,80 +352,84 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Formulario de Contacto con Validación -->
-    <section class="contact" id="contacto">
-        <h2 data-aos="fade-up">¿Necesitas ayuda?</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Contáctame y agenda tu servicio 😉</p>
-        
-        <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
-            <form id="contactForm" class="contact-form" onsubmit="handleFormSubmit(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Nombre Completo *</label>
-                        <input type="text" id="name" name="name" required placeholder="Tu nombre">
+        <!-- Contact Section -->
+        <section class="contact" id="contacto">
+            <h2 data-aos="fade-up">¿Necesitas ayuda?</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Contáctame y agenda tu servicio 😉</p>
+            
+            <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <form id="contactForm" class="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre" autocomplete="name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="669-151-7346" autocomplete="tel">
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone">Teléfono *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="669-151-7346">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email">
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Servicio de Interés</label>
+                        <select id="service" name="service">
+                            <option value="">Selecciona un servicio...</option>
+                            <option value="reparacion">Reparación de PC</option>
+                            <option value="mantenimiento">Mantenimiento Preventivo</option>
+                            <option value="software">Instalación de Software</option>
+                            <option value="soporte">Soporte Técnico</option>
+                            <option value="recuperacion">Recuperación de Datos</option>
+                            <option value="redes">Configuración de Redes</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea id="message" name="message" required rows="5" placeholder="Cuéntame qué necesitas..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Enviar Mensaje</button>
+                </form>
                 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">Servicio de Interés</label>
-                    <select id="service" name="service">
-                        <option value="">Selecciona un servicio...</option>
-                        <option value="reparacion">Reparación de PC</option>
-                        <option value="mantenimiento">Mantenimiento Preventivo</option>
-                        <option value="software">Instalación de Software</option>
-                        <option value="soporte">Soporte Técnico</option>
-                        <option value="recuperacion">Recuperación de Datos</option>
-                        <option value="redes">Configuración de Redes</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Mensaje *</label>
-                    <textarea id="message" name="message" required rows="5" placeholder="Cuéntame qué necesitas..."></textarea>
-                </div>
-                
-                <button type="submit" class="cta-button">Enviar Mensaje</button>
-            </form>
+                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
+            </div>
             
-            <div id="formMessage" class="form-message"></div>
-        </div>
-        
-        <div class="contact-info" data-aos="fade-up" data-aos-delay="300">
-            <div class="contact-item">
-                <div class="contact-label">Ubicación.</div>
-                <div class="contact-value">Concordia, Sinaloa.</div>
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-item">
+                    <div class="contact-label">Ubicación</div>
+                    <div class="contact-value">Concordia, Sinaloa</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Empresa</div>
+                    <div class="contact-value">Concordia Digital</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Servicios</div>
+                    <div class="contact-value">Lun - Sáb</div>
+                </div>
             </div>
-            <div class="contact-item">
-                <div class="contact-label">Empresa.</div>
-                <div class="contact-value">Concordia Digital.</div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-label">Servicios.</div>
-                <div class="contact-value">Lun - Sáb.</div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer>
+    <!-- Footer -->
+    <footer role="contentinfo">
         <p>© 2026 Concordia Digital. Todos los derechos reservados. | Servicios Digitales y Tecnológicos en Concordia, Sinaloa.</p>
     </footer>
 
+    <!-- Toast Container (para notificaciones) -->
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

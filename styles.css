@@ -4,6 +4,18 @@
     --gray-dark: #1a1a1a;
     --gray-mid: #404040;
     --gray-light: #d4d4d4;
+    
+    /* Sistema de tipografía responsive */
+    --text-xs: clamp(0.75rem, 2vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 2.5vw, 1rem);
+    --text-base: clamp(1rem, 3vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
 }
 
 * {
@@ -12,12 +24,40 @@
     box-sizing: border-box;
 }
 
+/* Mejora de animaciones en móviles */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 body {
     font-family: 'JetBrains Mono', monospace;
     background: var(--black);
     color: var(--white);
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Skip Link para accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--white);
+    color: var(--black);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 10000;
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 /* Contenedor genérico */
@@ -41,14 +81,104 @@ body::before {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+/* ============================================ */
+/* LOADING SCREEN */
+/* ============================================ */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loading-logo {
+    margin: 0 auto 1rem;
+    animation: pulse-logo 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-logo {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1) rotate(180deg);
+        opacity: 0.8;
+    }
+}
+
+/* ============================================ */
+/* TOAST NOTIFICATIONS */
+/* ============================================ */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--gray-dark);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    max-width: 300px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.toast-success {
+    border-left-color: #22c55e;
+}
+
+.toast.toast-error {
+    border-left-color: #ef4444;
+}
+
+.toast.toast-info {
+    border-left-color: #3b82f6;
+}
+
+/* ============================================ */
 /* WhatsApp Floating Button - MEJORADO */
+/* ============================================ */
 .whatsapp-float {
     position: fixed;
     width: 60px;
     height: 60px;
     bottom: 30px;
     right: 30px;
-    background-color: #25d365d2;
+    background-color: #25d366;
     color: #FFF;
     border-radius: 50px;
     text-align: center;
@@ -61,11 +191,18 @@ body::before {
     transition: all 0.3s ease;
     cursor: pointer;
     animation: pulse 2s infinite;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.whatsapp-float:hover {
+.whatsapp-float:hover,
+.whatsapp-float:focus {
     transform: scale(1.1) rotate(5deg);
     box-shadow: 2px 2px 25px rgba(37, 211, 102, 0.6);
+    outline: 2px solid rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float:active {
+    transform: scale(1.05);
 }
 
 @keyframes pulse {
@@ -80,7 +217,9 @@ body::before {
     }
 }
 
-/* Botón Scroll to Top - NUEVO */
+/* ============================================ */
+/* Botón Scroll to Top */
+/* ============================================ */
 .scroll-to-top {
     position: fixed;
     bottom: 100px;
@@ -100,6 +239,7 @@ body::before {
     transition: all 0.3s ease;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .scroll-to-top.visible {
@@ -107,12 +247,20 @@ body::before {
     visibility: visible;
 }
 
-.scroll-to-top:hover {
+.scroll-to-top:hover,
+.scroll-to-top:focus {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+    outline: 2px solid var(--white);
 }
 
+.scroll-to-top:active {
+    transform: translateY(-3px);
+}
+
+/* ============================================ */
 /* Header */
+/* ============================================ */
 header {
     position: fixed;
     top: 0;
@@ -176,6 +324,10 @@ header {
     gap: 5px;
     cursor: pointer;
     z-index: 101;
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu-toggle span {
@@ -211,12 +363,13 @@ nav a {
     letter-spacing: 0.1em;
     position: relative;
     transition: color 0.3s ease;
+    padding: 0.5rem 0;
 }
 
 nav a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
@@ -224,11 +377,19 @@ nav a::after {
     transition: width 0.3s ease;
 }
 
-nav a:hover::after {
+nav a:hover::after,
+nav a:focus::after {
     width: 100%;
 }
 
+nav a:focus {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+/* ============================================ */
 /* Hero Section */
+/* ============================================ */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -266,7 +427,7 @@ nav a:hover::after {
 
 .hero h1 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 10vw, 7rem);
+    font-size: clamp(2.5rem, 10vw, 7rem);
     font-weight: 800;
     line-height: 1.05;
     margin-bottom: 1.5rem;
@@ -276,12 +437,12 @@ nav a:hover::after {
 .hero h1 .outline {
     color: transparent;
     -webkit-text-stroke: 2px var(--white);
-    text-box-edge: 2px var(--white);
+    text-stroke: 2px var(--white);
 }
 
 .hero-subtitle {
-    font-size: clamp(0.9rem, 3vw, 1.3rem);
-    max-width: 600px;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    max-width: 650px;
     margin: 0 auto 3rem;
     color: var(--gray-light);
     line-height: 1.8;
@@ -302,6 +463,8 @@ nav a:hover::after {
     overflow: hidden;
     transition: all 0.4s ease;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .cta-button::before {
@@ -316,12 +479,19 @@ nav a:hover::after {
     z-index: -1;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus {
     color: var(--white);
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
 }
 
 .cta-button:hover::before {
     left: 0;
+}
+
+.cta-button:active {
+    transform: scale(0.98);
 }
 
 .scroll-indicator {
@@ -340,7 +510,9 @@ nav a:hover::after {
     50% { opacity: 1; transform: translateX(-50%) translateY(15px); }
 }
 
+/* ============================================ */
 /* Services Section */
+/* ============================================ */
 .services {
     padding: 6rem 2rem;
     max-width: 1400px;
@@ -365,7 +537,7 @@ nav a:hover::after {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -391,7 +563,8 @@ nav a:hover::after {
     transition: transform 0.4s ease;
 }
 
-.service-card:hover {
+.service-card:hover,
+.service-card:focus-within {
     transform: translateY(-8px);
     border-color: rgba(255, 255, 255, 0.3);
 }
@@ -419,65 +592,56 @@ nav a:hover::after {
 
 .service-card p {
     color: var(--gray-light);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
 }
 
-.service-card.coming-soon {
-    opacity: 0.6;
+.coming-soon {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 250px;
-}
-
-.service-card.coming-soon:hover {
-    transform: translateY(0);
-    opacity: 0.8;
+    background: var(--black);
+    border-style: dashed;
+    opacity: 0.5;
 }
 
 .coming-soon-text {
     font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--gray-mid);
 }
 
+/* ============================================ */
 /* Tech DNA Section */
+/* ============================================ */
 .tech-dna {
     padding: 6rem 2rem;
-    background: linear-gradient(135deg, var(--gray-dark) 0%, var(--black) 100%);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--gray-dark);
+    text-align: center;
 }
 
 .tech-dna-container {
     max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
 }
 
 .tech-dna h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 800;
-    margin-bottom: 2rem;
-    letter-spacing: -0.03em;
-    background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
 }
 
 .tech-dna-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    max-width: 800px;
+    margin: 0 auto 4rem;
     color: var(--gray-light);
-    margin-bottom: 4rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.8;
 }
 
 .dna-stats {
@@ -488,81 +652,72 @@ nav a:hover::after {
 }
 
 .stat-item {
-    position: relative;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--black);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .stat-item:hover {
-    background: rgba(255, 255, 255, 0.05);
     transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .stat-number {
     font-family: 'Syne', sans-serif;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
-    background: linear-gradient(135deg, #ffffff 0%, #666666 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--white);
+    margin-bottom: 0.5rem;
     line-height: 1;
-    margin-bottom: 1rem;
 }
 
 .stat-label {
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
 }
 
 .stat-description {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--gray-light);
+    font-size: 0.9rem;
     line-height: 1.6;
 }
 
-/* TESTIMONIOS - NUEVO */
+/* ============================================ */
+/* Testimonials Section */
+/* ============================================ */
 .testimonials-section {
     padding: 6rem 2rem;
-    background: var(--black);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 2rem;
     margin-top: 3rem;
 }
 
 .testimonial-card {
     background: var(--gray-dark);
-    padding: 2.5rem;
+    padding: 2.5rem 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    position: relative;
+    transition: all 0.4s ease;
 }
 
 .testimonial-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.testimonial-stars {
-    color: #FFD700;
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.2em;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .testimonial-text {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: var(--gray-light);
     margin-bottom: 2rem;
@@ -587,6 +742,7 @@ nav a:hover::after {
     font-family: 'Syne', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
+    flex-shrink: 0;
 }
 
 .author-info h4 {
@@ -613,11 +769,16 @@ nav a:hover::after {
     transition: opacity 0.3s;
 }
 
-.testimonial-cta a:hover {
+.testimonial-cta a:hover,
+.testimonial-cta a:focus {
     opacity: 0.7;
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
 }
 
-/* FAQ Section - NUEVO */
+/* ============================================ */
+/* FAQ Section */
+/* ============================================ */
 .faq-section {
     padding: 6rem 2rem;
     background: var(--gray-dark);
@@ -656,10 +817,13 @@ nav a:hover::after {
     align-items: center;
     gap: 1rem;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.faq-question:hover {
+.faq-question:hover,
+.faq-question:focus {
     background: rgba(255, 255, 255, 0.03);
+    outline: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .faq-icon {
@@ -689,7 +853,9 @@ nav a:hover::after {
     font-size: 0.95rem;
 }
 
-/* Formulario de Contacto - MEJORADO */
+/* ============================================ */
+/* Contact Section */
+/* ============================================ */
 .contact {
     padding: 6rem 2rem;
     text-align: center;
@@ -816,7 +982,9 @@ nav a:hover::after {
     font-weight: 600;
 }
 
+/* ============================================ */
 /* Footer */
+/* ============================================ */
 footer {
     padding: 2rem;
     text-align: center;
@@ -825,7 +993,9 @@ footer {
     font-size: 0.8rem;
 }
 
-/* Mobile Responsive */
+/* ============================================ */
+/* RESPONSIVE - MOBILE */
+/* ============================================ */
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -836,6 +1006,7 @@ footer {
         top: 0;
         right: -100%;
         width: 70%;
+        max-width: 300px;
         height: 100vh;
         background: var(--gray-dark);
         flex-direction: column;
@@ -847,6 +1018,13 @@ footer {
 
     nav.active {
         right: 0;
+    }
+    
+    nav a {
+        font-size: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
 
     .services-grid {
@@ -877,12 +1055,19 @@ footer {
     }
 
     .contact-form {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
     }
 
     .form-row {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Previene zoom en iOS */
+        padding: 1rem 1.25rem;
     }
 
     .contact-info {
@@ -900,58 +1085,106 @@ footer {
     }
 
     .cta-button {
-        padding: 0.9rem 2rem;
+        width: 100%;
+        padding: 1.1rem 2rem;
         font-size: 0.7rem;
     }
 
     .whatsapp-float {
-        width: 50px;
-        height: 50px;
+        width: 56px;
+        height: 56px;
         bottom: 20px;
         right: 20px;
-        font-size: 24px;
+        font-size: 26px;
     }
 
     .scroll-to-top {
         width: 45px;
         height: 45px;
-        bottom: 80px;
+        bottom: 85px;
         right: 20px;
+    }
+    
+    .faq-question {
+        font-size: 1rem;
+        padding: 1.25rem 1.5rem;
+        min-height: 44px;
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 1.5rem 1.25rem;
     }
 }
 
-/* Extra small devices */
+/* ============================================ */
+/* RESPONSIVE - EXTRA SMALL DEVICES */
+/* ============================================ */
 @media (max-width: 480px) {
+    header {
+        padding: 1rem 1.25rem;
+    }
+    
     .hero {
-        padding: 4rem 1rem 2rem;
+        padding: 5rem 1.25rem 3rem;
+    }
+    
+    .hero h1 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.7;
     }
 
     .services {
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
     }
 
     .tech-dna {
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
     }
 
     .testimonials-section {
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
     }
 
     .faq-section {
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
     }
 
     .contact {
-        padding: 3rem 1rem;
+        padding: 3rem 1.25rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem 1.25rem;
     }
 
     footer p {
         font-size: 0.7rem;
+        line-height: 1.6;
+    }
+    
+    .toast-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .toast {
+        max-width: 100%;
     }
 }
 
-/* Tablet */
+/* ============================================ */
+/* RESPONSIVE - TABLET */
+/* ============================================ */
 @media (min-width: 769px) and (max-width: 1024px) {
     header {
         padding: 1.5rem 3rem;
@@ -984,4 +1217,74 @@ footer {
     .contact {
         padding: 5rem 3rem;
     }
+}
+
+/* ============================================ */
+/* RESPONSIVE - LARGE SCREENS */
+/* ============================================ */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .services,
+    .tech-dna-container,
+    .testimonials-section,
+    .faq-container {
+        max-width: 1600px;
+    }
+}
+
+/* ============================================ */
+/* PRINT STYLES */
+/* ============================================ */
+@media print {
+    .whatsapp-float,
+    .scroll-to-top,
+    .menu-toggle,
+    .page-loader,
+    .toast-container,
+    .scroll-indicator {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* ============================================ */
+/* UTILITY CLASSES */
+/* ============================================ */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.loading-skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.05) 25%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(255,255,255,0.05) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
