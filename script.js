@@ -207,6 +207,35 @@ function toggleFAQ(button) {
     }
 }
 
+// ============================================
+// SERVICIOS EXPANDIBLES
+// ============================================
+function toggleService(card) {
+    const wasActive = card.classList.contains('active');
+    
+    // Cerrar todas las tarjetas de servicio
+    document.querySelectorAll('.service-card').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Si no estaba activa, abrirla
+    if (!wasActive) {
+        card.classList.add('active');
+        
+        // Scroll suave hacia la tarjeta expandida
+        setTimeout(() => {
+            const headerOffset = 120;
+            const elementPosition = card.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }, 100);
+    }
+}
+
 // También permitir abrir/cerrar con Enter o Espacio
 document.addEventListener('DOMContentLoaded', function() {
     const faqButtons = document.querySelectorAll('.faq-question');
@@ -711,6 +740,7 @@ window.concordiaDigital = {
     toggleMenu,
     closeMenu,
     toggleFAQ,
+    toggleService,
     handleFormSubmit,
     showToast,
     shareWebsite,
