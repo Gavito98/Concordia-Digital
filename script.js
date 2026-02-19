@@ -28,8 +28,41 @@ function initializeApp() {
     // Inicializar event listeners
     initializeEventListeners();
     
+    // Actualizar estado de horario
+    updateBusinessStatus();
+    
     // Log de bienvenida
     logWelcomeMessage();
+}
+
+// ============================================
+// ACTUALIZAR ESTADO DE NEGOCIO (ABIERTO/CERRADO)
+// ============================================
+function updateBusinessStatus() {
+    const statusIndicator = document.getElementById('statusIndicator');
+    if (!statusIndicator) return;
+    
+    const now = new Date();
+    const day = now.getDay();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const currentTime = hours + minutes / 60;
+    
+    const isWeekday = day >= 1 && day <= 6;
+    const isOpenHours = currentTime >= 9 && currentTime < 18;
+    const isOpen = isWeekday && isOpenHours;
+    
+    const statusText = statusIndicator.querySelector('.status-text');
+    
+    if (isOpen) {
+        statusIndicator.classList.add('open');
+        statusText.textContent = 'Abierto';
+    } else {
+        statusIndicator.classList.remove('open');
+        statusText.textContent = 'Cerrado';
+    }
+    
+    setTimeout(updateBusinessStatus, 60000);
 }
 
 // ============================================
@@ -221,18 +254,6 @@ function toggleService(card) {
     // Si no estaba activa, abrirla
     if (!wasActive) {
         card.classList.add('active');
-        
-        // Scroll suave hacia la tarjeta expandida
-        setTimeout(() => {
-            const headerOffset = 120;
-            const elementPosition = card.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }, 100);
     }
 }
 
@@ -271,50 +292,23 @@ function handleFormSubmit(event) {
     // Obtener valores del formulario
     const formData = {
         name: form.name.value.trim(),
-        phone: form.phone.value.trim(),
         email: form.email.value.trim(),
         service: form.service.value,
         message: form.message.value.trim()
     };
     
     // Validación básica
-    if (!formData.name || !formData.phone || !formData.message) {
+    if (!formData.name || !formData.email || !formData.message) {
         showMessage('Por favor completa todos los campos requeridos.', 'error');
+        showToast('Completa todos los campos requeridos', 'error');
         return;
     }
     
-    // Validar nombre (mínimo 3 caracteres)
-    if (formData.name.length < 3) {
-        showMessage('Por favor ingresa un nombre válido.', 'error');
-        return;
-    }
-    
-    // Validar teléfono (simple: solo números y caracteres permitidos)
-    const phonePattern = /^[\d\-\s\(\)\+]+$/;
-    if (!phonePattern.test(formData.phone)) {
-        showMessage('Por favor ingresa un número de teléfono válido.', 'error');
-        return;
-    }
-    
-    // Validar longitud de teléfono
-    const phoneDigits = formData.phone.replace(/\D/g, '');
-    if (phoneDigits.length < 10) {
-        showMessage('El teléfono debe tener al menos 10 dígitos.', 'error');
-        return;
-    }
-    
-    // Validar email si se proporcionó
-    if (formData.email) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(formData.email)) {
-            showMessage('Por favor ingresa un email válido.', 'error');
-            return;
-        }
-    }
-    
-    // Validar mensaje (mínimo 10 caracteres)
-    if (formData.message.length < 10) {
-        showMessage('El mensaje debe tener al menos 10 caracteres.', 'error');
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showMessage('Por favor ingresa un email válido.', 'error');
+        showToast('Email no válido', 'error');
         return;
     }
     
@@ -325,26 +319,18 @@ function handleFormSubmit(event) {
     // Simular envío
     setTimeout(() => {
         // Preparar mensaje de WhatsApp
-        let whatsappMessage = `Hola! Soy ${formData.name}.\n\n${formData.message}`;
+        const serviceName = formData.service ? 
+            form.service.options[form.service.selectedIndex].text : 
+            'No especificado';
         
-        if (formData.service) {
-            const serviceNames = {
-                'reparacion': 'Reparación de PC',
-                'mantenimiento': 'Mantenimiento Preventivo',
-                'software': 'Instalación de Software',
-                'soporte': 'Soporte Técnico',
-                'recuperacion': 'Recuperación de Datos',
-                'redes': 'Configuración de Redes',
-                'otro': 'Otro servicio'
-            };
-            whatsappMessage += `\n\nServicio de interés: ${serviceNames[formData.service] || formData.service}`;
-        }
-        
-        whatsappMessage += `\n\nMi teléfono es: ${formData.phone}`;
-        
-        if (formData.email) {
-            whatsappMessage += `\nMi email es: ${formData.email}`;
-        }
+        const whatsappMessage = `*Nuevo mensaje desde la web*
+
+👤 *Nombre:* ${formData.name}
+📧 *Email:* ${formData.email}
+🔧 *Servicio:* ${serviceName}
+
+💬 *Mensaje:*
+${formData.message}`;
         
         const whatsappURL = `https://wa.me/${CONFIG.WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
         
@@ -740,7 +726,6 @@ window.concordiaDigital = {
     toggleMenu,
     closeMenu,
     toggleFAQ,
-    toggleService,
     handleFormSubmit,
     showToast,
     shareWebsite,

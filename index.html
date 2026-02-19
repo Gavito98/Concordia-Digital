@@ -57,7 +57,7 @@
     <div id="pageLoader" class="page-loader">
         <div class="loader-content">
             <div class="logo-icon loading-logo">C</div>
-            <p>Cargando...</p>
+            <p>Un momento...</p>
         </div>
     </div>
 
@@ -72,6 +72,10 @@
                 <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
             <span class="hours-text">Lun - Sáb: 9:00 AM - 6:00 PM</span>
+            <span class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Cerrado</span>
+            </span>
         </div>
     </div>
 
@@ -109,7 +113,7 @@
             <a href="#servicios" onclick="closeMenu()">Servicios</a>
             <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
             <a href="#testimonios" onclick="closeMenu()">Testimonios</a>
-            <a href="#faq" onclick="closeMenu()">FAQ</a>
+            <a href="#faq" onclick="closeMenu()">Preguntas</a>
             <a href="#contacto" onclick="closeMenu()">Contacto</a>
         </nav>
     </header>
@@ -125,10 +129,10 @@
                     <span class="outline">A mi web.</span>
                 </h1>
                 <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                    ➤ Hola, ¿Qué tal? soy tu técnico de confianza en Concordia, Sinaloa, México. Ofrezco servicios básicos tecnológicos a domicilio, 
+                    👋🏼 Hola, ¿Qué tal? soy tu técnico de confianza en Concordia, Sinaloa, México. Ofrezco servicios básicos tecnológicos a domicilio, 
                     pensados para ayudarte sin que tengas que salir de casa ni "batallar" con la tecnología.
                 </p>
-                <a href="#contacto" class="cta-button" data-aos="fade-up" data-aos-delay="400">Solicitar Servicio</a>
+                <a href="#contacto" class="cta-button" data-aos="fade-up" data-aos-delay="400">Solicita un servicio aquí.</a>
             </div>
             <div class="scroll-indicator" aria-hidden="true"></div>
         </section>
@@ -141,7 +145,7 @@
                 <article class="service-card" data-aos="fade-up" data-aos-delay="100" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">01</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -155,7 +159,7 @@
                 <article class="service-card" data-aos="fade-up" data-aos-delay="200" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">02</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -163,13 +167,13 @@
                     <p>Limpieza física y optimización de sistemas para mantener tus equipos funcionando como nuevos.</p>
                     <div class="service-details">
                         <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600&q=80" alt="Mantenimiento de computadora" loading="lazy">
-                        <p class="service-extra-info">Incluye limpieza interna, cambio de pasta térmica, optimización de software, eliminación de archivos temporales y análisis de rendimiento. Mantenemos tu equipo en óptimas condiciones.</p>
+                        <p class="service-extra-info">Incluye limpieza interna, cambio de pasta térmica, optimización de software, eliminación de archivos temporales y análisis de rendimiento.</p>
                     </div>
                 </article>
                 <article class="service-card" data-aos="fade-up" data-aos-delay="300" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">03</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -177,13 +181,13 @@
                     <p>Ofrezco servicios de instalación y configuración de programas, sistemas operativos y aplicaciones según tus necesidades, así como la implementación y puesta en marcha de equipos físicos.</p>
                     <div class="service-details">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Instalación de software" loading="lazy">
-                        <p class="service-extra-info">Instalamos Windows, Linux, programas de oficina, diseño gráfico, antivirus y más. También configuramos periféricos, discos duros, memorias RAM y componentes internos.</p>
+                        <p class="service-extra-info">Instalamos Windows, Linux, programas de oficina, diseño gráfico, antivirus y más. También configuramos periféricos y componentes internos.</p>
                     </div>
                 </article>
                 <article class="service-card" data-aos="fade-up" data-aos-delay="100" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">04</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -191,13 +195,13 @@
                     <p>Asesoría y solución de problemas tecnológicos. Te ayudo a entender y usar mejor tu equipo.</p>
                     <div class="service-details">
                         <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80" alt="Soporte técnico" loading="lazy">
-                        <p class="service-extra-info">Brindamos asistencia remota y presencial, resolución de problemas, capacitación básica, configuración de cuentas y ayuda con dudas tecnológicas. Soporte cuando lo necesites.</p>
+                        <p class="service-extra-info">Brindamos asistencia remota y presencial, resolución de problemas, capacitación básica y ayuda con dudas tecnológicas.</p>
                     </div>
                 </article>
                 <article class="service-card" data-aos="fade-up" data-aos-delay="200" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">05</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -205,13 +209,13 @@
                     <p>Rescate de información importante de discos dañados o sistemas que no arrancan.</p>
                     <div class="service-details">
                         <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&q=80" alt="Recuperación de datos" loading="lazy">
-                        <p class="service-extra-info">Recuperamos fotos, documentos, videos y archivos de discos duros, USB, tarjetas SD y dispositivos que dejaron de funcionar. Tus recuerdos están seguros con nosotros.</p>
+                        <p class="service-extra-info">Recuperamos fotos, documentos, videos y archivos de discos duros, USB, tarjetas SD y dispositivos dañados.</p>
                     </div>
                 </article>
                 <article class="service-card" data-aos="fade-up" data-aos-delay="300" onclick="toggleService(this)">
                     <div class="service-header">
                         <div class="service-number" aria-hidden="true">06</div>
-                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <svg class="service-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
@@ -219,7 +223,7 @@
                     <p>Instalación y optimización de redes WiFi, cableadas y solución de problemas de conectividad.</p>
                     <div class="service-details">
                         <img src="https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=600&q=80" alt="Configuración de redes" loading="lazy">
-                        <p class="service-extra-info">Configuramos routers, extendemos señal WiFi, instalamos redes cableadas, mejoramos la seguridad de tu red y solucionamos problemas de conexión a internet.</p>
+                        <p class="service-extra-info">Configuramos routers, extendemos señal WiFi, instalamos redes cableadas y mejoramos la seguridad de tu red.</p>
                     </div>
                 </article>
                 <article class="service-card coming-soon" data-aos="fade-up" data-aos-delay="400">
@@ -421,26 +425,19 @@
 
         <!-- Contact Section -->
         <section class="contact" id="contacto">
-            <h2 data-aos="fade-up">¿Necesitas ayuda?</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Contáctame y agenda tu servicio. 😉</p>
+            <h2 data-aos="fade-up">¿Problemas?</h2>
+            <p data-aos="fade-up" data-aos-delay="100">¡Ya no más! Contáctame y agenda tu servicio ahora.😉</p>
             
             <div class="contact-form-wrapper" data-aos="fade-up" data-aos-delay="200">
                 <form id="contactForm" class="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Nombre Completo </label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre" autocomplete="name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Teléfono </label>
-                            <input type="tel" id="phone" name="phone" required placeholder="669-151-7346" autocomplete="tel">
-                        </div>
+                    <div class="form-group">
+                        <label for="name">Nombre Completo <span style="color: #ef4444;">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre completo" autocomplete="name">
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email">
+                        <label for="email">Correo Electronico <span style="color: #ef4444;">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com" autocomplete="email">
                     </div>
                     
                     <div class="form-group">
@@ -453,13 +450,13 @@
                             <option value="soporte">Soporte Técnico</option>
                             <option value="recuperacion">Recuperación de Datos</option>
                             <option value="redes">Configuración de Redes</option>
-                            <option value="otro">Otro</option>
+                            <option value="otro">Otro...</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Mensaje </label>
-                        <textarea id="message" name="message" required rows="5" placeholder="Cuéntame qué necesitas..."></textarea>
+                        <label for="message">¿Qué necesitas? <span style="color: #ef4444;">*</span></label>
+                        <textarea id="message" name="message" required rows="5" placeholder="Cuéntame qué necesitas y me pondré en contacto contigo..."></textarea>
                     </div>
                     
                     <button type="submit" class="cta-button">Enviar Mensaje</button>
@@ -471,11 +468,11 @@
             <div class="contact-info" data-aos="fade-up" data-aos-delay="300">
                 <div class="contact-item">
                     <div class="contact-label">Ubicación</div>
-                    <div class="contact-value">📍 Concordia, Sinaloa, México</div>
+                    <div class="contact-value">📍 Concordia, Sinaloa, México.</div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-label">Empresa</div>
-                    <div class="contact-value">💼 Concordia Digital</div>
+                    <div class="contact-value">💼 Concordia Digital.</div>
                 </div>
             </div>
         </section>

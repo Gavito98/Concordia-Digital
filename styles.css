@@ -270,7 +270,6 @@ body::before {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 101;
     padding: 0.4rem 0;
-    animation: slideDown 0.8s ease-out;
 }
 
 .hours-content {
@@ -293,12 +292,45 @@ body::before {
     font-weight: 500;
 }
 
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 0.8rem;
+    padding-left: 0.8rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: pulse-status 2s ease-in-out infinite;
+}
+
+.status-indicator.open .status-dot {
+    background: #22c55e;
+}
+
+.status-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@keyframes pulse-status {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
 /* ============================================ */
 /* Header */
 /* ============================================ */
 header {
     position: fixed;
-    top: 32px; /* Ajustado para estar debajo de la barra de horario */
+    top: 32px;
     left: 0;
     right: 0;
     padding: 1.5rem 2rem;
@@ -1092,6 +1124,20 @@ footer {
     .clock-icon {
         width: 12px;
         height: 12px;
+    }
+    
+    .status-indicator {
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    
+    .status-text {
+        font-size: 0.65rem;
+    }
+    
+    .status-dot {
+        width: 6px;
+        height: 6px;
     }
     
     header {
